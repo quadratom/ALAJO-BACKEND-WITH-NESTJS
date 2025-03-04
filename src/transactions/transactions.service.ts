@@ -29,17 +29,9 @@ export class TransactionService {
     const skip = (page - 1) * limit;
 
     // Separate pagination and search from filters
-    const { page: _page, limit: _limit, search, ...filters } = filterDto;
+    const { page: _page, limit: _limit,  ...filters } = filterDto;
 
-    // if (search) {
-    //   const searchRegex = new RegExp(search, 'i');
-    //   filters['$or'] = [
-    //     // Adjust the field names as necessary.
-    //     { user: { $regex: searchRegex } },
-    //     // You could add additional fields, e.g., { description: { $regex: searchRegex } },
-    //   ];
-    // }
-
+   
     // Get total count for pagination
     const total = await this.model.countDocuments(filters);
 

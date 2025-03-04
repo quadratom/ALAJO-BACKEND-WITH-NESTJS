@@ -17,22 +17,26 @@ export class TransactionController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll(@Query() query: FilterTransactionDto) {
     return this.transactionService.findAll(query);
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findById(@Param('id') id: string) {
     return this.transactionService.findById(id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiBody({ type: UpdateTransactionDto }) // Ensure DTO is referenced
   async update(@Param('id') id: string, @Body() dto: UpdateTransactionDto) {
     return this.transactionService.update(id, dto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async delete(@Param('id') id: string) {
     return this.transactionService.delete(id) ?? {};
   }
